@@ -87,7 +87,7 @@ int LCD_1in28_test(void)
 
     Paint_DrawNum(50, 80, 9.87654321, &Font20, 3, WHITE, BLACK);
     Paint_DrawString_EN(50, 100, "ABC", &Font20, 0x000f, 0xfff0);
-    Paint_DrawString_CN(50, 120, "Î¢Ñ©µç×Ó", &Font24CN, WHITE, BLUE);
+    Paint_DrawString_CN(50, 120, "Î¢Ñ©ï¿½ï¿½ï¿½ï¿½", &Font24CN, WHITE, BLUE);
     Paint_DrawString_EN(50, 161, "WaveShare", &Font16, RED, WHITE);
 
     // /*3.Refresh the picture in RAM to LCD*/

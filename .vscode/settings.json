@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "/home/jur/projects/FreeWatchSW/c-example",
+    "files.associations": {
+        "lcd_test.h": "c"
+    }
+}
