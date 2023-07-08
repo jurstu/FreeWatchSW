@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/CMakeFiles/ELF2UF2Build
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/CMakeFiles/ELF2UF2Build.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/CMakeFiles/ELF2UF2Build-complete.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+/home/jur/Downloads/RP2040-Touch-LCD-Code (1)/RP2040-Touch-LCD-1.28/c/build/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
