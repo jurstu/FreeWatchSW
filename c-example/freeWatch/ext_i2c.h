@@ -15,7 +15,8 @@
 
 
 void EXT_I2C_init();
-
+uint8_t EXT_I2C_read(uint8_t addr, uint8_t reg);
+void EXT_I2C_write(uint8_t addr, uint8_t reg, uint8_t Value);
 
 
 

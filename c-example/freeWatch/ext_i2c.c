@@ -11,9 +11,9 @@ void EXT_I2C_init()
 }
 
 
-void EXT_I2C_write(uint8_t addr, uint8_t reg, uint8_t Value)
+void EXT_I2C_write(uint8_t addr, uint8_t reg, uint8_t value)
 {
-    uint8_t data[2] = {reg, Value};
+    uint8_t data[2] = {reg, value};
     i2c_write_blocking(EXT_I2C_PORT, addr, data, 2, false);
 }
 

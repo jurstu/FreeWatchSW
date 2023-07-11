@@ -8,11 +8,13 @@
 #include "hardware/adc.h"
 #include "CST816S.h"
 #include "ext_i2c.h"
+#include "mcp23008.h"
+
 void DEV_init()
 {
     if (DEV_Module_Init() != 0)
     {
-        return -1;
+        return;
     }
     printf("LCD_1in28_test Demo\r\n");
     LCD_1IN28_Init(HORIZONTAL);
@@ -35,7 +37,17 @@ int main(void)
 
 
     EXT_I2C_init();
-
+    MCP23008_init();
+    MCP23008_set_pin_dir(0x00);
+    
+    while(1)
+    {
+        for(uint8_t i = 0; i < 8; i++)
+        {
+            MCP23008_set_pin_state(1<<i);
+            DEV_Delay_ms(100);
+        }
+    }
     uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
     uint16_t *BlackImage;
     if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
