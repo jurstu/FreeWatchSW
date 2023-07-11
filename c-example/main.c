@@ -7,6 +7,7 @@
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
 #include "CST816S.h"
+#include "ext_i2c.h"
 void DEV_init()
 {
     if (DEV_Module_Init() != 0)
@@ -31,6 +32,9 @@ int main(void)
     DEV_init();
 
     SUBDEV_init();
+
+
+    EXT_I2C_init();
 
     uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
     uint16_t *BlackImage;
