@@ -39,25 +39,36 @@ int main(void)
 
 
     MCP23008_set_pullups(0xFF);    
-    MCP23008_pin_dir(0, MCP23008_INPUT);
-    MCP23008_pin_dir(3, MCP23008_OUTPUT);
-    MCP23008_pin_dir(5, MCP23008_OUTPUT);
-    MCP23008_pin_dir(6, MCP23008_OUTPUT);
-    MCP23008_pin_dir(7, MCP23008_OUTPUT);
+    MCP23008_pin_dir(MCP23008_PIN_0, MCP23008_INPUT);
+    MCP23008_pin_dir(MCP23008_PIN_3, MCP23008_OUTPUT);
+    MCP23008_pin_dir(MCP23008_PIN_5, MCP23008_OUTPUT);
+    MCP23008_pin_dir(MCP23008_PIN_6, MCP23008_OUTPUT);
+    MCP23008_pin_dir(MCP23008_PIN_7, MCP23008_OUTPUT);
 
     
     uint8_t state;
+    uint8_t in = 0;
     while(1)
     {
         state = MCP23008_read_pin(0);
         printf("state: %d\n\r", state);
         DEV_Delay_ms(1);
         if(state)
-            MCP23008_set_state(0xF8);
-        else
+        {
             MCP23008_set_state(0x00);
+            LCD_1IN28_Clear(0xFFFF);
+        }
+        else
+        {
+            MCP23008_set_state(0xF8);
+            LCD_1IN28_Clear(0x0000);
+        }
 
         DEV_Delay_ms(10);
+        if(in++ > 200)
+        {
+            break;
+        }
     }
 
 
