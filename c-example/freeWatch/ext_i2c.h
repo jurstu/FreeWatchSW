@@ -8,6 +8,8 @@
 #include "hardware/i2c.h"
 #include "hardware/pwm.h"
 
+#include "DEV_Config.h"
+
 #define EXT_I2C_PORT (i2c0)
 #define EXT_I2C_SDA     (16)
 #define EXT_I2C_SCL     (17)

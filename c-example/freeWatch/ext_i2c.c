@@ -22,5 +22,6 @@ uint8_t EXT_I2C_read(uint8_t addr, uint8_t reg)
     uint8_t buf;
     i2c_write_blocking(EXT_I2C_PORT, addr, &reg, 1, true);
     i2c_read_blocking(EXT_I2C_PORT, addr, &buf, 1, false);
+    DEV_Delay_ms(1);
     return buf;
 }

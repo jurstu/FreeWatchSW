@@ -27,27 +27,42 @@ void DEV_init()
 
 void SUBDEV_init()
 {
+    EXT_I2C_init();
+    MCP23008_init();
 }
 
 int main(void)
 {
     DEV_init();
-
     SUBDEV_init();
 
 
-    EXT_I2C_init();
-    MCP23008_init();
-    MCP23008_set_pin_dir(0x00);
+
+    MCP23008_set_pullups(0xFF);    
+    MCP23008_pin_dir(0, MCP23008_INPUT);
+    MCP23008_pin_dir(3, MCP23008_OUTPUT);
+    MCP23008_pin_dir(5, MCP23008_OUTPUT);
+    MCP23008_pin_dir(6, MCP23008_OUTPUT);
+    MCP23008_pin_dir(7, MCP23008_OUTPUT);
+
     
+    uint8_t state;
     while(1)
     {
-        for(uint8_t i = 0; i < 8; i++)
-        {
-            MCP23008_set_pin_state(1<<i);
-            DEV_Delay_ms(100);
-        }
+        state = MCP23008_read_pin(0);
+        printf("state: %d\n\r", state);
+        DEV_Delay_ms(1);
+        if(state)
+            MCP23008_set_state(0xF8);
+        else
+            MCP23008_set_state(0x00);
+
+        DEV_Delay_ms(10);
     }
+
+
+
+
     uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
     uint16_t *BlackImage;
     if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
