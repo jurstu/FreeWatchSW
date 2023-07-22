@@ -7,8 +7,14 @@
 #include "pico/stdlib.h"
 #include "hardware/adc.h"
 #include "CST816S.h"
+#include "math.h"
+
 #include "ext_i2c.h"
 #include "mcp23008.h"
+#include "screens.h"
+
+
+
 
 void DEV_init()
 {
@@ -36,7 +42,7 @@ int main(void)
     DEV_init();
     SUBDEV_init();
 
-
+/*
 
     MCP23008_set_pullups(0xFF);    
     MCP23008_pin_dir(MCP23008_PIN_0, MCP23008_INPUT);
@@ -48,6 +54,48 @@ int main(void)
     
     uint8_t state;
     uint8_t in = 0;
+
+*/
+    uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
+    uint16_t *BlackImage;
+    if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
+    {
+        printf("Failed to apply for black memory...\r\n");
+        exit(0);
+    }
+    // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
+    Paint_NewImage((uint8_t *)BlackImage, LCD_1IN28.WIDTH, LCD_1IN28.HEIGHT, 0, WHITE);
+    Paint_SetScale(65);
+    Paint_SetRotate(ROTATE_0);
+    Paint_Clear(COLORS_get_565_from_888(0,0,0));
+
+
+    uint16_t xx = 0;
+    while(1)
+    {
+        for (uint16_t i = 0; i < 360; i++)
+        {
+            uint8_t x = 120 + 120*cos((i+xx)*M_PI/180);
+            uint8_t y = 120 + 120*sin((i+xx)*M_PI/180);
+            uint16_t col = COLORS_get_565_rgb_from_hsv(i*255/360, 255, 255);
+
+            //Paint_SetPixel(x, y, col);
+            Paint_DrawLine(120, 120, x, y, col, DOT_PIXEL_2X2, DOT_FILL_RIGHTUP);
+            
+
+        }
+        LCD_1IN28_Display(BlackImage);
+
+        xx+=180;
+    }
+
+
+
+
+/*
+
+
+
     while(1)
     {
         state = MCP23008_read_pin(0);
@@ -67,26 +115,14 @@ int main(void)
         DEV_Delay_ms(10);
         if(in++ > 200)
         {
-            break;
+            //break;
         }
     }
 
+*/
 
 
-
-    uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
-    uint16_t *BlackImage;
-    if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
-    {
-        printf("Failed to apply for black memory...\r\n");
-        exit(0);
-    }
-    // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
-    Paint_NewImage((uint8_t *)BlackImage, LCD_1IN28.WIDTH, LCD_1IN28.HEIGHT, 0, WHITE);
-    Paint_SetScale(65);
-    Paint_Clear(WHITE);
-    Paint_SetRotate(ROTATE_0);
-    Paint_Clear(WHITE);
+    
     Paint_DrawString_EN(0, 128, "Jurstu Watch", &Font20, 0x000f, 0xfff0);
     Paint_DrawString_EN(50, 161, "WaveShare", &Font16, RED, WHITE);
 
