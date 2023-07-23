@@ -1,3 +1,0 @@
-/home/jur/projects/FreeWatchSW/build/pioasm/CMakeFiles/pioasm.dir
-/home/jur/projects/FreeWatchSW/build/pioasm/CMakeFiles/edit_cache.dir
-/home/jur/projects/FreeWatchSW/build/pioasm/CMakeFiles/rebuild_cache.dir

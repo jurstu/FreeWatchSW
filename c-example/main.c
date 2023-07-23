@@ -70,23 +70,29 @@ int main(void)
     Paint_Clear(COLORS_get_565_from_888(0,0,0));
 
 
-    uint16_t xx = 0;
+    int a = 0;
     while(1)
     {
-        for (uint16_t i = 0; i < 360; i++)
+        for (int8_t r = 117; r >= 0; r-=5)
         {
-            uint8_t x = 120 + 120*cos((i+xx)*M_PI/180);
-            uint8_t y = 120 + 120*sin((i+xx)*M_PI/180);
-            uint16_t col = COLORS_get_565_rgb_from_hsv(i*255/360, 255, 255);
 
-            //Paint_SetPixel(x, y, col);
-            Paint_DrawLine(120, 120, x, y, col, DOT_PIXEL_2X2, DOT_FILL_RIGHTUP);
-            
+            for (uint16_t i = 0; i < 360; i++)
+            {
+                if(i % 8 == 0)
+                {
+                    uint8_t x = 120 + r*cos((i+a*2)*M_PI/180);
+                    uint8_t y = 122 + r*sin((i+a*2)*M_PI/180);
+                    uint16_t col = COLORS_get_565_rgb_from_hsv(i*255/360, 255, 255);
 
+                    //Paint_SetPixel(x, y, col);
+                    Paint_DrawPoint(x, y, col, DOT_PIXEL_3X3, DOT_FILL_AROUND);
+                    LCD_1IN28_Display(BlackImage);
+                }
+
+            }
+            a+=2;    
         }
-        LCD_1IN28_Display(BlackImage);
-
-        xx+=180;
+        
     }
 
 
