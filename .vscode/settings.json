@@ -2,6 +2,8 @@
     "cmake.sourceDirectory": "/home/jur/projects/FreeWatchSW/c-example",
     "files.associations": {
         "lcd_test.h": "c",
-        "ext_i2c.h": "c"
+        "ext_i2c.h": "c",
+        "dev_config.h": "c",
+        "mcp23008.h": "c"
     }
 }

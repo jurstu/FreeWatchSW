@@ -12,8 +12,7 @@
 #include "ext_i2c.h"
 #include "mcp23008.h"
 #include "screens.h"
-
-
+#include "buttons.h"
 
 
 void DEV_init()
@@ -25,9 +24,8 @@ void DEV_init()
     printf("LCD_1in28_test Demo\r\n");
     LCD_1IN28_Init(HORIZONTAL);
     // 5 6 5
-    LCD_1IN28_Clear(0xF81F);
+    LCD_1IN28_Clear(0x0000);
     // LCD_1IN28_Clear(0xFFFF);
-
     DEV_SET_PWM(100);
 }
 
@@ -35,12 +33,51 @@ void SUBDEV_init()
 {
     EXT_I2C_init();
     MCP23008_init();
+    MCP23008_set_pullups(0x07);    
+    MCP23008_set_dir(0x07);
+    MCP23008_set_state(~0x07);
 }
 
 int main(void)
 {
     DEV_init();
     SUBDEV_init();
+
+    uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
+    uint16_t *BlackImage;
+    if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
+    {
+        printf("Failed to apply for black memory...\r\n");
+        exit(0);
+    }
+    // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
+    Paint_NewImage((uint8_t *)BlackImage, LCD_1IN28.WIDTH, LCD_1IN28.HEIGHT, 0, WHITE);
+    Paint_SetScale(65);
+    Paint_SetRotate(ROTATE_0);
+    Paint_Clear(COLORS_get_565_from_888(0,0,0));
+
+
+    uint8_t r=0, g=0, bc=0;
+    while(1)
+    {
+        button_event b = BUTTONS_get_events();
+        if(b&LEFT)
+        {
+            r+=10;
+        }
+        if(b&CENTER)
+        {
+            g+=10;
+        }
+        if(b&RIGHT)
+        {
+            bc+=10;
+        }
+        printf("%d %d %d, %04X\n\r", r, g, bc, COLORS_get_565_from_888(r,g,bc));
+        Paint_Clear(COLORS_get_565_from_888(r,g,bc));
+        LCD_1IN28_Display(BlackImage);
+    }
+
 
 /*
 
@@ -56,18 +93,7 @@ int main(void)
     uint8_t in = 0;
 
 */
-    uint32_t Imagesize = LCD_1IN28_HEIGHT * LCD_1IN28_WIDTH * 2;
-    uint16_t *BlackImage;
-    if ((BlackImage = (uint16_t *)malloc(Imagesize)) == NULL)
-    {
-        printf("Failed to apply for black memory...\r\n");
-        exit(0);
-    }
-    // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
-    Paint_NewImage((uint8_t *)BlackImage, LCD_1IN28.WIDTH, LCD_1IN28.HEIGHT, 0, WHITE);
-    Paint_SetScale(65);
-    Paint_SetRotate(ROTATE_0);
-    Paint_Clear(COLORS_get_565_from_888(0,0,0));
+
 
 
     int a = 0;
@@ -94,6 +120,7 @@ int main(void)
         }
         
     }
+
 
 
 
