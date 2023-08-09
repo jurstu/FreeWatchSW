@@ -12,6 +12,6 @@
 
 void SCREENS_debug();
 void SCREENS_paint_rainbows(uint16_t* pixel_data);
-void SCREENS_draw_watch();
+void SCREENS_draw_watch(uint8_t h, uint8_t m, uint8_t s);
 
 #endif

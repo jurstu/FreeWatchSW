@@ -64,14 +64,16 @@ int main(void)
     uint8_t r=0, g=0, bc=0;
     while(1)
     {
-        //SCREENS_draw_watch();
-
         uint8_t h, m, s;
         RTC_get_time(&h, &m, &s);
+        SCREENS_draw_watch(h, m, s);
+
+        
+        
         printf("%02d:%02d:%02d s?\n\r", h, m, s);
 
-        if(s == 1)
-            RTC_set_time(0, 0, 59);
+        //if(s == 1)
+            
 
 
         SCREENS_debug();
@@ -81,15 +83,18 @@ int main(void)
         button_event b = BUTTONS_get_events();
         if(b&LEFT)
         {
-            r+=10;
+            h+=1;
+            RTC_set_time(h, m, s);
         }
         if(b&CENTER)
         {
-            g+=10;
+            m+=1;
+            RTC_set_time(h, m, s);
         }
         if(b&RIGHT)
         {
-            bc+=10;
+            s+=1;
+            RTC_set_time(h, m, s);
         }
         
         
