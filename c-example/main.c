@@ -60,6 +60,12 @@ int main(void)
     uint8_t r=0, g=0, bc=0;
     while(1)
     {
+        SCREENS_draw_watch();
+        LCD_1IN28_Display(BlackImage);
+    }
+
+/*
+    {
         button_event b = BUTTONS_get_events();
         if(b&LEFT)
         {
@@ -73,11 +79,15 @@ int main(void)
         {
             bc+=10;
         }
+        
+        
+        
+        
         printf("%d %d %d, %04X\n\r", r, g, bc, COLORS_get_565_from_888(r,g,bc));
         Paint_Clear(COLORS_get_565_from_888(r,g,bc));
         LCD_1IN28_Display(BlackImage);
     }
-
+*/
 
 /*
 
