@@ -10,6 +10,7 @@
 #include "time.h"
 #include <pico/types.h>
 
+void SCREENS_debug();
 void SCREENS_paint_rainbows(uint16_t* pixel_data);
 void SCREENS_draw_watch();
 

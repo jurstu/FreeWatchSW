@@ -1,28 +1,43 @@
 #include "screens.h"
 
+
+void SCREENS_debug()
+{
+    
+}
+
+
 void SCREENS_draw_watch()
 {
 
     absolute_time_t t = get_absolute_time();
     
 
-    uint8_t hour = 0;
-    uint8_t minute = 0;
-    uint8_t second = t/1000000;
+    uint8_t hour = (t/100000)%12;
+    uint8_t minute = (t/100000 + 10)%60;
+    uint8_t second = (t/100000)%60;
 
     uint8_t centerX = LCD_1IN28.WIDTH/2;
     uint8_t centerY = LCD_1IN28.HEIGHT/2;
     uint8_t R = LCD_1IN28.WIDTH/2;
 
     Paint_Clear(COLORS_get_565_from_888(0, 0, 0));
-    
+
     Paint_DrawCircle(centerX, centerY, R-5, 0xFFFF, 2, 0);
 
+    uint8_t sEndX = centerX + sinf(((float)second/60)*2*M_PI) * (R-9);
+    uint8_t sEndY = centerY - cosf(((float)second/60)*2*M_PI) * (R-9);
+    Paint_DrawLine(centerX, centerY, sEndX, sEndY, COLORS_get_565_from_888(255, 0, 0), 2, LINE_STYLE_SOLID);
 
-    uint8_t mEndX = centerX + sinf(((float)second/60)*M_PI) * (R-9);
-    uint8_t mEndY = centerY - cosf(((float)second/60)*M_PI) * (R-9);
+    uint8_t mEndX = centerX + sinf(((float)minute/60)*2*M_PI) * (R*0.8 - 9);
+    uint8_t mEndY = centerY - cosf(((float)minute/60)*2*M_PI) * (R*0.8 - 9);
+    Paint_DrawLine(centerX, centerY, mEndX, mEndY, COLORS_get_565_from_888(255, 255, 0), 2, LINE_STYLE_SOLID);
 
-    Paint_DrawLine(centerX, centerX, mEndX, mEndY, 0xFFFF, 2, LINE_STYLE_SOLID);
+    uint8_t hEndX = centerX + sinf(((float)hour/12)*2*M_PI) * (R*0.5 - 9);
+    uint8_t hEndY = centerY - cosf(((float)hour/12)*2*M_PI) * (R*0.5 - 9);
+    Paint_DrawLine(centerX, centerY, hEndX, hEndY, COLORS_get_565_from_888(0, 255, 0), 2, LINE_STYLE_SOLID);
+
+
 
 }
 

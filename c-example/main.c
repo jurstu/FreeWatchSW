@@ -13,7 +13,9 @@
 #include "mcp23008.h"
 #include "screens.h"
 #include "buttons.h"
+#include "rtc.h"
 
+// 104 94 84, 6AEA - szary dronowy ? 
 
 void DEV_init()
 {
@@ -36,6 +38,8 @@ void SUBDEV_init()
     MCP23008_set_pullups(0x07);    
     MCP23008_set_dir(0x07);
     MCP23008_set_state(~0x07);
+
+    RTC_init();
 }
 
 int main(void)
@@ -60,12 +64,20 @@ int main(void)
     uint8_t r=0, g=0, bc=0;
     while(1)
     {
-        SCREENS_draw_watch();
-        LCD_1IN28_Display(BlackImage);
-    }
+        //SCREENS_draw_watch();
 
-/*
-    {
+        uint8_t h, m, s;
+        RTC_get_time(&h, &m, &s);
+        printf("%02d:%02d:%02d s?\n\r", h, m, s);
+
+        if(s == 1)
+            RTC_set_time(0, 0, 59);
+
+
+        SCREENS_debug();
+
+        LCD_1IN28_Display(BlackImage);
+
         button_event b = BUTTONS_get_events();
         if(b&LEFT)
         {
@@ -83,11 +95,10 @@ int main(void)
         
         
         
-        printf("%d %d %d, %04X\n\r", r, g, bc, COLORS_get_565_from_888(r,g,bc));
-        Paint_Clear(COLORS_get_565_from_888(r,g,bc));
-        LCD_1IN28_Display(BlackImage);
+        //printf("%d %d %d, %04X\n\r", r, g, bc, COLORS_get_565_from_888(r,g,bc));
+        //Paint_Clear(COLORS_get_565_from_888(r,g,bc));
+        //LCD_1IN28_Display(BlackImage);
     }
-*/
 
 /*
 
