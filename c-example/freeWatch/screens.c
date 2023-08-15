@@ -10,7 +10,7 @@ void SCREENS_debug()
 void SCREENS_draw_watch(uint8_t h, uint8_t m, uint8_t s)
 {
 
-    absolute_time_t t = get_absolute_time();
+    //absolute_time_t t = get_absolute_time();
     
 
     uint8_t hour = h;
@@ -36,6 +36,26 @@ void SCREENS_draw_watch(uint8_t h, uint8_t m, uint8_t s)
     uint8_t hEndX = centerX + sinf(((float)hour/12)*2*M_PI) * (R*0.5 - 9);
     uint8_t hEndY = centerY - cosf(((float)hour/12)*2*M_PI) * (R*0.5 - 9);
     Paint_DrawLine(centerX, centerY, hEndX, hEndY, COLORS_get_565_from_888(0, 255, 0), 2, LINE_STYLE_SOLID);
+
+
+    for (uint8_t i = 0; i < 12; i++)
+    {
+        uint8_t startX = centerX + sinf(((float)i/12)*2*M_PI) * (R*0.9 - 9);
+        uint8_t startY = centerY - cosf(((float)i/12)*2*M_PI) * (R*0.9 - 9);
+        uint8_t endX   = centerX + sinf(((float)i/12)*2*M_PI) * (R*1.02 - 9);
+        uint8_t endY   = centerY - cosf(((float)i/12)*2*M_PI) * (R*1.02 - 9);
+
+        Paint_DrawLine(startX, startY, endX, endY, 0xFFFF, 1, LINE_STYLE_SOLID);
+
+        char buff[3];
+        sprintf(buff, "%d", i+1);
+        float ang_add = 0.01;
+        startX = centerX + sinf(((float)(i+1)/12+ang_add)*2*M_PI) * (R*0.88)-3;
+        
+        startY = centerY - cosf(((float)(i+1)/12+ang_add)*2*M_PI) * (R*0.88)-5;
+        Paint_DrawString_EN(startX, startY, buff, &Font12, WHITE, BLACK); 
+    }
+
 
 
 
