@@ -14,6 +14,7 @@
 #include "screens.h"
 #include "buttons.h"
 #include "rtc.h"
+#include "GPS.h"
 
 // 104 94 84, 6AEA - szary dronowy ? 
 
@@ -40,6 +41,8 @@ void SUBDEV_init()
     MCP23008_set_state(~0x07);
 
     RTC_init();
+
+    GPS_init();
 }
 
 int main(void)
@@ -62,42 +65,44 @@ int main(void)
 
 
     uint8_t r=0, g=0, bc=0;
+
+    
+
+    uint8_t screen = 0;
+    uint8_t screen_num = 2;
     while(1)
     {
         uint8_t h, m, s;
         RTC_get_time(&h, &m, &s);
-        SCREENS_draw_watch(h, m, s);
-
         
-        
-        printf("%02d:%02d:%02d s?\n\r", h, m, s);
-
-        //if(s == 1)
-            
-
-
-        SCREENS_debug();
-
-        LCD_1IN28_Display(BlackImage);
+        //printf("%02d:%02d:%02d\n\r", h, m, s);
 
         button_event b = BUTTONS_get_events();
         if(b&LEFT)
         {
-            h+=1;
-            RTC_set_time(h, m, s);
+            screen = (screen+1)%screen_num;
         }
         if(b&CENTER)
         {
-            m+=1;
-            RTC_set_time(h, m, s);
+
         }
         if(b&RIGHT)
         {
-            s+=1;
-            RTC_set_time(h, m, s);
+            screen = (screen-1 + screen_num)%screen_num;
         }
-        
-        
+
+        if (screen == 0)
+        {
+            SCREENS_draw_watch(h, m, s);
+        }
+
+        if (screen == 1)
+        {
+            SCREENS_debug();
+        }
+        LCD_1IN28_Display(BlackImage);
+
+        GPS_handle_parse();
         
         
         //printf("%d %d %d, %04X\n\r", r, g, bc, COLORS_get_565_from_888(r,g,bc));

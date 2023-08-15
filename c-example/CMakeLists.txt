@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 include(pico_sdk_import.cmake)
 
+
 project(Pico_ePaper_Code)
 pico_sdk_init()
 
@@ -26,10 +27,13 @@ include_directories(./lib/QMI8658)
 include_directories(./freeWatch)
 
 
+
 # 生成可执行文件
 add_executable(main 
 main.c
 )
+
+
 
 # enable usb output, disable uart output
 pico_enable_stdio_usb(main 1)

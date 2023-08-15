@@ -3,7 +3,7 @@
 
 void SCREENS_debug()
 {
-
+    Paint_Clear(COLORS_get_565_from_888(0xc8, 00, 0xe9));
 }
 
 
