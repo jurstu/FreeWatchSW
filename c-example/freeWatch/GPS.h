@@ -12,7 +12,7 @@
 
 #define SERIAL_BAUD 9600
 #define PIO_RX_PIN 18
-#define FIFO_SIZE 128
+#define FIFO_SIZE 256
 
 void GPS_init();
 
