@@ -9,6 +9,8 @@
 #include "hardware/pio.h"
 #include "hardware/uart.h"
 #include "uart_rx.pio.h"
+#include "minmea.h"
+
 
 #define SERIAL_BAUD 9600
 #define PIO_RX_PIN 18
