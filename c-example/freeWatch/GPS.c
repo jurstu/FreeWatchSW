@@ -15,11 +15,11 @@ uint8_t *data;
 char *temp_buff; 
 uint16_t temp_buff_index;
 typedef enum
-    {
-        LOOKING_FOR_START = 0x01,
-        LOOKING_FOR_END = 0x02,
-        HANDLING_CMD = 0x04,
-    } GPS_handling_state;
+{
+    LOOKING_FOR_START = 0x01,
+    LOOKING_FOR_END = 0x02,
+    HANDLING_CMD = 0x04,
+} GPS_handling_state;
 
 GPS_handling_state state;
 
@@ -80,7 +80,8 @@ static void GPS_parse_message(char *line, uint16_t len)
 
                 if (frame.valid)
                 {
-                    
+                    printf("lat %f, lon %f\n", lat, lon);
+                           
                     // TODO pass information to center block
                 }
             }
@@ -94,8 +95,11 @@ static void GPS_parse_message(char *line, uint16_t len)
         case MINMEA_SENTENCE_GGA:
         {
             struct minmea_sentence_gga frame;
+            //printf("line is %s\n", line);
             if (minmea_parse_gga(&frame, line))
             {
+                struct minmea_time t = frame.time;
+                printf("time is %d:%d:%d in UTC\n\r", t.hours, t.minutes, t.seconds);
                 //INFORMATION_set(AIR_SAT_CNT, frame.satellites_tracked);
                 // ESP_LOGI(tag, "GGA sats in use: %d", frame.satellites_tracked);
             }
@@ -198,6 +202,7 @@ void GPS_handle_parse()
         if (state == HANDLING_CMD)
         {
             temp_buff[temp_buff_index] = 0;
+            //printf("message is %s\n", temp_buff);
             GPS_parse_message(temp_buff, temp_buff_index);
             temp_buff_index = 0;
             state = LOOKING_FOR_START;
