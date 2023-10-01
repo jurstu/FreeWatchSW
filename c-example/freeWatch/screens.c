@@ -83,3 +83,11 @@ void SCREENS_paint_rainbows(uint16_t *pixel_data)
         a += 2;
     }
 }
+
+void SCREENS_draw_Paulina_is_super()
+{
+    Paint_DrawString_EN(40, 100, "Paulina jest super", &Font12, WHITE, BLACK);
+}
+
+
+

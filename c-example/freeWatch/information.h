@@ -11,13 +11,13 @@ typedef enum
     INF_DEST_LON,
 
     
-    INF_YEAR_UTC,
-    INF_MONTH_UTC,
-    INF_DAY_UTC,
+    INF_GPS_YEAR_UTC,
+    INF_GPS_MONTH_UTC,
+    INF_GPS_DAY_UTC,
 
-    INF_HOUR_UTC,
-    INF_MINUTE_UTC,
-    INF_SECOND_UTC,     
+    INF_GPS_HOUR_UTC,
+    INF_GPS_MINUTE_UTC,
+    INF_GPS_SECOND_UTC,     
  
     INFORMATION_TYPE_COUNT
 } Information;

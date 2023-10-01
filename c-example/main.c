@@ -69,7 +69,7 @@ int main(void)
     
 
     uint8_t screen = 0;
-    uint8_t screen_num = 2;
+    uint8_t screen_num = 3;
     while(1)
     {
         
@@ -98,6 +98,12 @@ int main(void)
         {
             SCREENS_debug();
         }
+
+        if (screen == 2)
+        {
+            SCREENS_draw_Paulina_is_super();
+        }
+
         LCD_1IN28_Display(BlackImage);
 
         GPS_handle_parse();
