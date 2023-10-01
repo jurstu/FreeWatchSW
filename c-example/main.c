@@ -72,8 +72,6 @@ int main(void)
     uint8_t screen_num = 2;
     while(1)
     {
-        uint8_t h, m, s;
-        RTC_get_time(&h, &m, &s);
         
         //printf("%02d:%02d:%02d\n\r", h, m, s);
 
@@ -93,7 +91,7 @@ int main(void)
 
         if (screen == 0)
         {
-            SCREENS_draw_watch(h, m, s);
+            SCREENS_draw_watch();
         }
 
         if (screen == 1)

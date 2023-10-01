@@ -7,16 +7,16 @@ void SCREENS_debug()
 }
 
 
-void SCREENS_draw_watch(uint8_t h, uint8_t m, uint8_t s)
+void SCREENS_draw_watch()
 {
-
+    
     //absolute_time_t t = get_absolute_time();
     
 
-    uint8_t hour = h;
-    uint8_t minute = m;
-    uint8_t second = s;
 
+    uint8_t hour, minute, second;
+    RTC_get_time(&hour, &minute, &second);
+    
     uint8_t centerX = LCD_1IN28.WIDTH/2;
     uint8_t centerY = LCD_1IN28.HEIGHT/2;
     uint8_t R = LCD_1IN28.WIDTH/2;

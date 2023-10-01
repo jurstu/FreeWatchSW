@@ -58,12 +58,6 @@ static bool init_pio(const pio_program_t *program, PIO *pio_hw, uint *sm, uint *
 
 
 
-/**
- * parses only whole NMEA messages
- * 
- * @param line data from nmea stream to be parsed
- * @param len length of data in line param
- */
 static void GPS_parse_message(char *line, uint16_t len)
 {
     switch (minmea_sentence_id(line, false))
@@ -75,12 +69,26 @@ static void GPS_parse_message(char *line, uint16_t len)
             {
                 float lat = minmea_tocoord(&frame.latitude);
                 float lon = minmea_tocoord(&frame.longitude);
-
+                
                 if (frame.valid)
                 {
                     printf("lat %f, lon %f\n", lat, lon);
-                           
-                    // TODO pass information to center block
+                    INFORMATION_set(INF_LAT, lat);
+                    INFORMATION_set(INF_LON, lon);
+
+
+
+                    struct minmea_time t = frame.time;
+                    printf("time is %d:%d:%d in UTC\n\r", t.hours, t.minutes, t.seconds);
+                    INFORMATION_set(INF_HOUR_UTC, t.hours);
+                    INFORMATION_set(INF_MINUTE_UTC, t.minutes);
+                    INFORMATION_set(INF_SECOND_UTC, t.seconds);
+
+                    struct minmea_date d;
+                    INFORMATION_set(INF_YEAR_UTC, d.year);
+                    INFORMATION_set(INF_MONTH_UTC, d.month);
+                    INFORMATION_set(INF_DAY_UTC, d.day); 
+
                 }
             }
             else
@@ -96,8 +104,8 @@ static void GPS_parse_message(char *line, uint16_t len)
             //printf("line is %s\n", line);
             if (minmea_parse_gga(&frame, line))
             {
-                struct minmea_time t = frame.time;
-                printf("time is %d:%d:%d in UTC\n\r", t.hours, t.minutes, t.seconds);
+
+
                 //INFORMATION_set(AIR_SAT_CNT, frame.satellites_tracked);
                 // ESP_LOGI(tag, "GGA sats in use: %d", frame.satellites_tracked);
             }
@@ -212,5 +220,30 @@ void GPS_handle_parse()
 
 
 
+float GPS_CALC_ctt(float lat1, float lon1, float lat2, float lon2)
+{    
+    if (lat1 == NAN || lon1 == NAN || lat2 == NAN || lon2 == NAN)
+    {
+        return NAN;
+    }
+    lat1 *= M_PI / 180;
+    lon1 *= M_PI / 180;
+    lat2 *= M_PI / 180;
+    lon2 *= M_PI / 180;
+    
+    float d_lat = lat2 - lat1;
+    float d_lon = lon2 - lon1;
 
+    float R = 6371000; // Radius of Earth in [m]
+    float a = sin(d_lat / 2) * sin(d_lat / 2) +
+                cos(lat1) * cos(lat2) * sin(d_lon / 2) * sin(d_lon / 2);
+
+    return 2 * R * atan2(sqrt(a), sqrt(1-a));
+
+}
+
+float GPS_CALC_dtt(float lat1, float lon1, float lat2, float lon2)
+{
+    
+}
 
