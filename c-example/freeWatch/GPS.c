@@ -66,8 +66,6 @@ static bool init_pio(const pio_program_t *program, PIO *pio_hw, uint *sm, uint *
  */
 static void GPS_parse_message(char *line, uint16_t len)
 {
-    // ESP_LOGI(tag, "line in parse_message: %s", line);
-
     switch (minmea_sentence_id(line, false))
     {
         case MINMEA_SENTENCE_RMC:
