@@ -41,6 +41,7 @@ echo "export PICO_EXAMPLES_PATH=~/pico/pico-examples" >> $sh_file
 
 git clone https://github.com/raspberrypi/picotool.git --branch master
 cd picotool
+sudo cp udev/99-picotool.rules /etc/udev/rules.d/
 mkdir build 
 cd build 
 export PICO_SDK_PATH=/home/$USER/pico/pico-sdk
