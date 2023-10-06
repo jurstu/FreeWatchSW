@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/CMakeFiles/ELF2UF2Build"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/CMakeFiles/ELF2UF2Build.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/CMakeFiles/ELF2UF2Build-complete.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule"
+		},
+		{
+			"file" : "/root/projects/FreeWatchSW/c-example/bild/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"ELF2UF2Build"
+		],
+		"name" : "ELF2UF2Build"
+	}
+}
