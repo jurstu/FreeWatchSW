@@ -1,25 +1,17 @@
 #include "LVGL_Setup.h"
 
+uint32_t LVGL_get_tick();
 
-
-uint32_t my_tick();
-void Arduino_IIC_Touch_Interrupt(void);
-static void event_handler(lv_event_t * e);
-void disp_flush(lv_display_t * display, const lv_area_t * area, uint8_t * px_map);
-void my_input_read(lv_indev_t * indev, lv_indev_data_t*data);
+void LVGL_display_flush(lv_display_t * display, const lv_area_t * area, uint8_t * px_map);
+void LVGL_input_read(lv_indev_t * indev, lv_indev_data_t*data);
 
 
 
-
+/// # TODO maybe let's move this to display.cpp ?
 Arduino_DataBus *bus = new Arduino_ESP32QSPI(LCD_CS, LCD_SCLK, LCD_SDIO0, LCD_SDIO1, LCD_SDIO2, LCD_SDIO3);
 Arduino_GFX *gfx = new Arduino_SH8601(bus, LCD_RST, 0, false, LCD_WIDTH, LCD_HEIGHT);
-std::shared_ptr<Arduino_IIC_DriveBus> IIC_Bus = std::make_shared<Arduino_HWIIC>(IIC_SDA, IIC_SCL, &Wire);
-std::unique_ptr<Arduino_IIC> FT3168(new Arduino_FT3x68(IIC_Bus, FT3168_DEVICE_ADDRESS, DRIVEBUS_DEFAULT_VALUE, TP_INT, Arduino_IIC_Touch_Interrupt));
 
 
-static int touch_pressed = 0;
-static int touch_x = 0;
-static int touch_y = 0;
 lv_obj_t *label;
 
 
@@ -28,106 +20,53 @@ void LVGL_Setup()
     pinMode(LCD_EN, OUTPUT);
     digitalWrite(LCD_EN, HIGH);
 
-    while (FT3168->begin() == false)
-    {
-        Serial.println("FT3168 initialization fail");
-        delay(2000);
-    }
-    Serial.println("FT3168 initialization successfully");
-
     gfx->begin(80000000); // 80MHz clock
     gfx->Display_Brightness(100);
 
     lv_init();
 
-    lv_tick_set_cb(my_tick);
+    // LVGL timer init
+    lv_tick_set_cb(LVGL_get_tick);
 
+    // LVGL display init
     lv_display_t * display = lv_display_create(gfx->width(), gfx->height());
-    lv_display_set_flush_cb(display, disp_flush);
+    lv_display_set_flush_cb(display, LVGL_display_flush);
 
-
-
+    // LVGL framebuffer init
     const uint32_t size = (LCD_HEIGHT) * (LCD_WIDTH) * BYTE_PER_PIXEL;    
     uint16_t *buf_3_1 = (uint16_t*) aligned_alloc(2, size);
     uint16_t *buf_3_2 = (uint16_t*) aligned_alloc(2, size);
     lv_display_set_buffers(display, buf_3_1, buf_3_2, size, LV_DISPLAY_RENDER_MODE_FULL);
 
+    // LVGL touch control
     lv_indev_t * indev = lv_indev_create();
     lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
-    lv_indev_set_read_cb(indev, my_input_read);
-    //label = lv_label_create(lv_scr_act());
-    //lv_label_set_text(label, "Hello Arduino! (V" GFX_STR(LVGL_VERSION_MAJOR) "." GFX_STR(LVGL_VERSION_MINOR) "." GFX_STR(LVGL_VERSION_PATCH) ")");
-    //lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
+    lv_indev_set_read_cb(indev, LVGL_input_read);
+
+    ui_init();
 }
 
-
-void LVGL_check_touch()
+void LVGL_tick()
 {
-    if (FT3168->IIC_Interrupt_Flag == true)
-    {
-        FT3168->IIC_Interrupt_Flag = false;
-
-        
-        touch_x = FT3168->IIC_Read_Device_Value(FT3168->Arduino_IIC_Touch::Value_Information::TOUCH_COORDINATE_X);
-        touch_y = FT3168->IIC_Read_Device_Value(FT3168->Arduino_IIC_Touch::Value_Information::TOUCH_COORDINATE_Y);
-        
-        uint8_t fingers_number = FT3168->IIC_Read_Device_Value(FT3168->Arduino_IIC_Touch::Value_Information::TOUCH_FINGER_NUMBER);
-
-        
-        Serial.println(touch_x);
-        touch_pressed = fingers_number > 0;
-    }
+    TOUCH_check_touch();
+    lv_timer_handler(); /* let the GUI do its work */
 }
 
-
-
-
-void Arduino_IIC_Touch_Interrupt(void)
+void LVGL_input_read(lv_indev_t * indev, lv_indev_data_t*data)
 {
-    FT3168->IIC_Interrupt_Flag = true;
-}
-
-
-
-
-
-
-
-static void event_handler(lv_event_t * e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    if(code == LV_EVENT_CLICKED) {
-        Serial.println("Clicked");
-    }
-    else if(code == LV_EVENT_VALUE_CHANGED) {
-        Serial.println("Toggled");
-    }
-}
-
-
-void my_input_read(lv_indev_t * indev, lv_indev_data_t*data)
-{
-    if(touch_pressed) {
-        data->point.x = touch_x;
-        data->point.y = touch_y;
+    int x, y, p;
+    TOUCH_get_status(&x, &y, &p);
+    if(p) {
+        data->point.x = x;
+        data->point.y = y;
         data->state = LV_INDEV_STATE_PRESSED;
     } else {
         data->state = LV_INDEV_STATE_RELEASED;
     }
 }
 
-
-
-
-void disp_flush(lv_display_t * display, const lv_area_t * area, uint8_t * px_map)
+void LVGL_display_flush(lv_display_t * display, const lv_area_t * area, uint8_t * px_map)
 {
-
-    //Serial.print("data at ");
-    //Serial.print(area->x1);
-    //Serial.print(", ");
-    //Serial.print(area->y1);
-    //Serial.println("");
-
     uint16_t * buf16 = (uint16_t *)px_map;
     int32_t w, h;
     w = area->x2 - area->x1 + 1;
@@ -139,7 +78,7 @@ void disp_flush(lv_display_t * display, const lv_area_t * area, uint8_t * px_map
 }
 
 
-uint32_t my_tick()
+uint32_t LVGL_get_tick()
 {
     return millis();
 }
