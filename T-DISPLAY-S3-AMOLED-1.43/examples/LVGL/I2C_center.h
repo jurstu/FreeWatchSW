@@ -6,6 +6,6 @@
 #include "pin_config.h"
 
 void I2C_init();
-std::shared_ptr<Arduino_IIC_DriveBus> I2C_get_bus();
+void I2C_get_bus(std::shared_ptr<Arduino_IIC_DriveBus> &dest);
 
 #endif

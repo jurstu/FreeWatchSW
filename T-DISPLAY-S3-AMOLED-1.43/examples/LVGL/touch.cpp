@@ -3,8 +3,8 @@
 void TOUCH_FT3168_interrupt(void);
 
 
-std::shared_ptr<Arduino_IIC_DriveBus> IIC_Bus = std::make_shared<Arduino_HWIIC>(IIC_SDA, IIC_SCL, &Wire);
-std::unique_ptr<Arduino_IIC> FT3168(new Arduino_FT3x68(IIC_Bus, FT3168_DEVICE_ADDRESS, DRIVEBUS_DEFAULT_VALUE, TP_INT, TOUCH_FT3168_interrupt));
+std::shared_ptr<Arduino_IIC_DriveBus> IIC_for_touch;
+std::unique_ptr<Arduino_IIC> FT3168;
 static int touch_pressed = 0;
 static int touch_x = 0;
 static int touch_y = 0;
@@ -12,6 +12,11 @@ static int touch_y = 0;
 
 void TOUCH_init()
 {
+    
+    I2C_get_bus(IIC_for_touch);
+    FT3168 = std::unique_ptr<Arduino_IIC>(new Arduino_FT3x68(IIC_for_touch, FT3168_DEVICE_ADDRESS, DRIVEBUS_DEFAULT_VALUE, TP_INT, TOUCH_FT3168_interrupt));
+
+
     while (FT3168->begin() == false)
     {
         Serial.println("FT3168 initialization fail");

@@ -7,16 +7,17 @@
 
 //std::shared_ptr<Arduino_IIC_DriveBus> IIC_Bus = std::make_shared<Arduino_HWIIC>(IIC_SDA, IIC_SCL, &Wire);
 
-extern std::shared_ptr<Arduino_IIC_DriveBus> IIC_Bus;
+std::shared_ptr<Arduino_IIC_DriveBus> IIC_Bus = std::make_shared<Arduino_HWIIC>(IIC_SDA, IIC_SCL, &Wire);
+
 void I2C_init()
 {
 
 }
 
 
-std::shared_ptr<Arduino_IIC_DriveBus> I2C_get_bus()
+void I2C_get_bus(std::shared_ptr<Arduino_IIC_DriveBus> &dest)
 {
-    return IIC_Bus;
+    dest = IIC_Bus;
 }
 
 
