@@ -1,4 +1,4 @@
-# Install script for directory: /root/pico/pico-sdk/src/rp2_common/pico_stdlib
+# Install script for directory: /home/jur/pico/pico-sdk/src/rp2_common/pico_stdlib
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

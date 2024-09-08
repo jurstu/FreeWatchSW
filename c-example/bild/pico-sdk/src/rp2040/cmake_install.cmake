@@ -1,4 +1,4 @@
-# Install script for directory: /root/pico/pico-sdk/src/rp2040
+# Install script for directory: /home/jur/pico/pico-sdk/src/rp2040
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2040/hardware_regs/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2040/hardware_structs/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2040/hardware_regs/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2040/hardware_structs/cmake_install.cmake")
 
 endif()
 

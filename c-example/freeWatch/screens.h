@@ -10,10 +10,11 @@
 #include "time.h"
 #include <pico/types.h>
 #include "rtc.h"
+#include "information.h"
 
 void SCREENS_debug();
 void SCREENS_paint_rainbows(uint16_t* pixel_data);
 void SCREENS_draw_watch();
 void SCREENS_draw_Paulina_is_super();
-
+void SCREENS_draw_gps_data();
 #endif

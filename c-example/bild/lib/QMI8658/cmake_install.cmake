@@ -1,4 +1,4 @@
-# Install script for directory: /root/projects/FreeWatchSW/c-example/lib/QMI8658
+# Install script for directory: /home/jur/projects/FreeWatchSW/c-example/lib/QMI8658
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

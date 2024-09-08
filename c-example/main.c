@@ -63,13 +63,8 @@ int main(void)
     Paint_SetRotate(ROTATE_0);
     Paint_Clear(COLORS_get_565_from_888(0,0,0));
 
-
-    uint8_t r=0, g=0, bc=0;
-
-    
-
-    uint8_t screen = 0;
-    uint8_t screen_num = 3;
+    uint8_t screen = 3;
+    uint8_t screen_num = 4;
     while(1)
     {
         
@@ -102,6 +97,11 @@ int main(void)
         if (screen == 2)
         {
             SCREENS_draw_Paulina_is_super();
+        }
+
+        if (screen == 3)
+        {
+            SCREENS_draw_gps_data();
         }
 
         LCD_1IN28_Display(BlackImage);

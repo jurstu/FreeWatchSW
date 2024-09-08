@@ -1,4 +1,4 @@
-# Install script for directory: /root/projects/FreeWatchSW/c-example/lib/GUI
+# Install script for directory: /home/jur/projects/FreeWatchSW/c-example/lib/GUI
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

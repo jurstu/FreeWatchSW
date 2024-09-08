@@ -1,4 +1,4 @@
-# Install script for directory: /root/pico/pico-sdk
+# Install script for directory: /home/jur/pico/pico-sdk
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/tools/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/docs/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/tools/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/docs/cmake_install.cmake")
 
 endif()
 

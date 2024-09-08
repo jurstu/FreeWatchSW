@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild-complete.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/CMakeFiles/PioasmBuild-complete.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
 		},
 		{
-			"file" : "/root/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
+			"file" : "/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/src/rp2_common/pico_cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
 		}
 	],
 	"target" : 

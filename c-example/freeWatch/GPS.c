@@ -79,7 +79,7 @@ static void GPS_parse_message(char *line, uint16_t len)
 
 
                     struct minmea_time t = frame.time;
-                    printf("time is %d:%d:%d in UTC\n\r", t.hours, t.minutes, t.seconds);
+                    printf("time is %02d:%02d:%02d in UTC\n\r", t.hours, t.minutes, t.seconds);
                     INFORMATION_set(INF_GPS_HOUR_UTC, t.hours);
                     INFORMATION_set(INF_GPS_MINUTE_UTC, t.minutes);
                     INFORMATION_set(INF_GPS_SECOND_UTC, t.seconds);

@@ -1,4 +1,4 @@
-# Install script for directory: /root/pico/pico-sdk/src/common/pico_util
+# Install script for directory: /home/jur/pico/pico-sdk/src/common/pico_util
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

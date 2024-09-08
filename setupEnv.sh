@@ -50,5 +50,5 @@ make
 sudo make install 
 
 
-
+sudo apt install -y minicom
 

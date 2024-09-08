@@ -3,7 +3,7 @@
 
 void SCREENS_debug()
 {
-    Paint_Clear(COLORS_get_565_from_888(0xc8, 00, 0xe9));
+    Paint_Clear(COLORS_get_565_from_888(0xc8, 0x00, 0xe9));
 }
 
 
@@ -91,3 +91,25 @@ void SCREENS_draw_Paulina_is_super()
 
 
 
+
+
+void SCREENS_draw_gps_data()
+{
+    float lat = INFORMATION_get(INF_LAT);
+    float lon = INFORMATION_get(INF_LON);
+    int h = INFORMATION_get(INF_GPS_HOUR_UTC);
+    int m = INFORMATION_get(INF_GPS_MINUTE_UTC);
+    int s = INFORMATION_get(INF_GPS_SECOND_UTC);
+
+    
+    Paint_Clear(COLORS_get_565_from_888(0x00, 0x00, 0x00));
+
+    char buff[300];
+    sprintf(buff, "%03.6f %03.6f", lat, lon);
+    Paint_DrawString_EN(40, 100, buff, &Font12, WHITE, BLACK);
+    
+
+
+
+
+}

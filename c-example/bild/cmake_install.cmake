@@ -1,4 +1,4 @@
-# Install script for directory: /root/projects/FreeWatchSW/c-example
+# Install script for directory: /home/jur/projects/FreeWatchSW/c-example
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,15 +39,15 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/root/projects/FreeWatchSW/c-example/bild/pico-sdk/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/Config/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/Fonts/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/GUI/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/LCD/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/Touch/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/lib/QMI8658/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/examples/cmake_install.cmake")
-  include("/root/projects/FreeWatchSW/c-example/bild/freeWatch/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/pico-sdk/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/Config/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/Fonts/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/GUI/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/LCD/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/Touch/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/lib/QMI8658/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/examples/cmake_install.cmake")
+  include("/home/jur/projects/FreeWatchSW/c-example/bild/freeWatch/cmake_install.cmake")
 
 endif()
 
@@ -59,5 +59,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/root/projects/FreeWatchSW/c-example/bild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jur/projects/FreeWatchSW/c-example/bild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

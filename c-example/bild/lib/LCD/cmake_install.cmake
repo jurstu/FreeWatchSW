@@ -1,4 +1,4 @@
-# Install script for directory: /root/projects/FreeWatchSW/c-example/lib/LCD
+# Install script for directory: /home/jur/projects/FreeWatchSW/c-example/lib/LCD
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
